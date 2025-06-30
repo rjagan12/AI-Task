@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.observer.pattern.ObserverImplementationsTest" time="0.091" tests="12" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/test-classes:/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/classes:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.2/junit-jupiter-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.2/junit-jupiter-params-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/jaganathan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/jaganathan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/jaganathan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:"/>
+    <property name="java.vm.vendor" value="Ubuntu"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://ubuntu.com/"/>
+    <property name="user.timezone" value="Asia/Kolkata"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/surefire/surefirebooter-20250630031151576_3.jar /home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/surefire 2025-06-30T03-11-50_377-jvmRun1 surefire-20250630031151576_1tmp surefire_0-20250630031151576_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/test-classes:/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/classes:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter/5.9.2/junit-jupiter-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.2/junit-jupiter-params-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/jaganathan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/jaganathan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/jaganathan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/jaganathan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.9.2/junit-jupiter-engine-5.9.2.jar:/home/jaganathan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/jaganathan"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/target/surefire/surefirebooter-20250630031151576_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.7+6-Ubuntu-0ubuntu122.04"/>
+    <property name="user.name" value="jaganathan"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.8.0-60-generic"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/jaganathan/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="21.0.7"/>
+    <property name="user.dir" value="/home/jaganathan/AI/Week-2/Task-2/ObserverPattern"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/tmp/.mount_CursorYRm7Vq/usr/lib/:/tmp/.mount_CursorYRm7Vq/usr/lib32/:/tmp/.mount_CursorYRm7Vq/usr/lib64/:/tmp/.mount_CursorYRm7Vq/lib/:/tmp/.mount_CursorYRm7Vq/lib/i386-linux-gnu/:/tmp/.mount_CursorYRm7Vq/lib/x86_64-linux-gnu/:/tmp/.mount_CursorYRm7Vq/lib/aarch64-linux-gnu/:/tmp/.mount_CursorYRm7Vq/lib32/:/tmp/.mount_CursorYRm7Vq/lib64/::/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Ubuntu"/>
+    <property name="java.vm.version" value="21.0.7+6-Ubuntu-0ubuntu122.04"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="testLogEventListenerDefaultLogLevel" classname="com.observer.pattern.ObserverImplementationsTest" time="0.005"/>
+  <testcase name="testEmailNotificationListenerEmailAddress" classname="com.observer.pattern.ObserverImplementationsTest" time="0.002"/>
+  <testcase name="testLogEventListenerLogFilePath" classname="com.observer.pattern.ObserverImplementationsTest" time="0.002"/>
+  <testcase name="testEmailNotificationListenerUpdate" classname="com.observer.pattern.ObserverImplementationsTest" time="0.014">
+    <system-out><![CDATA[📧 Email notification sent to test@example.com for event: TEST_EVENT - Test message
+📧 Email Details:
+  To: test@example.com
+  Subject: Event Notification: TEST_EVENT
+  Body: Event Details:
+  Type: TEST_EVENT
+  Message: Test message
+  Timestamp: 2025-06-30T03:11:52.591840197
+  Event ID: 4cbab199-8639-42da-96d3-9ec9b3fbcd46
+]]></system-out>
+  </testcase>
+  <testcase name="testSMSNotificationListenerPhoneNumber" classname="com.observer.pattern.ObserverImplementationsTest" time="0.005"/>
+  <testcase name="testLogEventListenerUpdate" classname="com.observer.pattern.ObserverImplementationsTest" time="0.014">
+    <system-out><![CDATA[📝 Log event recorded in /var/log/test.log for event: TEST_EVENT - Test message
+📝 Log Entry:
+  File: /var/log/test.log
+  Entry: [INFO] 2025-06-30T03:11:52.615613962 - Event: TEST_EVENT, Message: Test message, ID: ad8fcf7a-f2db-4dbe-bd77-11963113a7b3, Data: Test data
+]]></system-out>
+  </testcase>
+  <testcase name="testLogEventListenerObserverIdWithoutLogLevel" classname="com.observer.pattern.ObserverImplementationsTest" time="0.003"/>
+  <testcase name="testLogEventListenerObserverIdWithLogLevel" classname="com.observer.pattern.ObserverImplementationsTest" time="0.003"/>
+  <testcase name="testLogEventListenerLogLevel" classname="com.observer.pattern.ObserverImplementationsTest" time="0.002"/>
+  <testcase name="testEmailNotificationListenerObserverId" classname="com.observer.pattern.ObserverImplementationsTest" time="0.001"/>
+  <testcase name="testSMSNotificationListenerUpdate" classname="com.observer.pattern.ObserverImplementationsTest" time="0.006">
+    <system-out><![CDATA[📱 SMS notification sent to +1234567890 for event: TEST_EVENT - Test message
+📱 SMS Details:
+  To: +1234567890
+  Message: Event: TEST_EVENT
+  Test message
+  ID: 3cb75c49-157d-409d-87cf-6ecca6d1c77e
+]]></system-out>
+  </testcase>
+  <testcase name="testSMSNotificationListenerObserverId" classname="com.observer.pattern.ObserverImplementationsTest" time="0.003"/>
+</testsuite>

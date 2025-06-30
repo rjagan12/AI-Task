@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShoppingCart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Shopping Cart TDD</a> &gt; <a href="index.source.html" class="el_package">com.shopping</a> &gt; <span class="el_source">ShoppingCart.java</span></div><h1>ShoppingCart.java</h1><pre class="source lang-java linenums">package com.shopping;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class ShoppingCart {
+    private String id;
+    private List&lt;CartItem&gt; items;
+    private double discountRate;
+
+<span class="fc" id="L11">    public ShoppingCart() {</span>
+<span class="fc" id="L12">        this.id = UUID.randomUUID().toString();</span>
+<span class="fc" id="L13">        this.items = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L14">        this.discountRate = 0.0;</span>
+<span class="fc" id="L15">    }</span>
+
+    public String getId() {
+<span class="fc" id="L18">        return id;</span>
+    }
+
+    public List&lt;CartItem&gt; getItems() {
+<span class="fc" id="L22">        return new ArrayList&lt;&gt;(items);</span>
+    }
+
+    public double getTotal() {
+<span class="fc" id="L26">        double subtotal = getSubtotal();</span>
+<span class="fc" id="L27">        return subtotal * (1.0 - discountRate);</span>
+    }
+
+    public int getItemCount() {
+<span class="fc" id="L31">        return items.stream()</span>
+<span class="fc" id="L32">                .mapToInt(CartItem::getQuantity)</span>
+<span class="fc" id="L33">                .sum();</span>
+    }
+
+    public void addItem(Product product, int quantity) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (product == null) {</span>
+<span class="fc" id="L38">            throw new IllegalArgumentException(&quot;Product is required&quot;);</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (quantity &lt;= 0) {</span>
+<span class="fc" id="L41">            throw new IllegalArgumentException(&quot;Quantity must be greater than 0&quot;);</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (!product.hasStock(quantity)) {</span>
+<span class="fc" id="L44">            throw new IllegalStateException(&quot;Insufficient stock&quot;);</span>
+        }
+
+<span class="fc" id="L47">        Optional&lt;CartItem&gt; existingItem = items.stream()</span>
+<span class="fc" id="L48">                .filter(item -&gt; item.getProduct().equals(product))</span>
+<span class="fc" id="L49">                .findFirst();</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (existingItem.isPresent()) {</span>
+<span class="fc" id="L52">            CartItem item = existingItem.get();</span>
+<span class="fc" id="L53">            int newQuantity = item.getQuantity() + quantity;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">            if (!product.hasStock(newQuantity)) {</span>
+<span class="fc" id="L55">                throw new IllegalStateException(&quot;Insufficient stock&quot;);</span>
+            }
+<span class="fc" id="L57">            item.setQuantity(newQuantity);</span>
+<span class="fc" id="L58">        } else {</span>
+<span class="fc" id="L59">            items.add(new CartItem(product, quantity));</span>
+        }
+<span class="fc" id="L61">    }</span>
+
+    public void removeItem(String productId, int quantity) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (items.isEmpty()) {</span>
+<span class="fc" id="L65">            throw new IllegalStateException(&quot;Cart is empty&quot;);</span>
+        }
+
+<span class="fc" id="L68">        CartItem item = items.stream()</span>
+<span class="fc" id="L69">                .filter(cartItem -&gt; cartItem.getProduct().getId().equals(productId))</span>
+<span class="fc" id="L70">                .findFirst()</span>
+<span class="fc" id="L71">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Product not found in cart&quot;));</span>
+
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (item.getQuantity() &lt; quantity) {</span>
+<span class="fc" id="L74">            throw new IllegalStateException(&quot;Cannot remove more items than in cart&quot;);</span>
+        }
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (item.getQuantity() == quantity) {</span>
+<span class="fc" id="L78">            items.remove(item);</span>
+        } else {
+<span class="fc" id="L80">            item.setQuantity(item.getQuantity() - quantity);</span>
+        }
+<span class="fc" id="L82">    }</span>
+
+    public void updateQuantity(String productId, int quantity) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (quantity &lt; 0) {</span>
+<span class="fc" id="L86">            throw new IllegalArgumentException(&quot;Quantity cannot be negative&quot;);</span>
+        }
+
+<span class="fc" id="L89">        CartItem item = items.stream()</span>
+<span class="fc" id="L90">                .filter(cartItem -&gt; cartItem.getProduct().getId().equals(productId))</span>
+<span class="fc" id="L91">                .findFirst()</span>
+<span class="fc" id="L92">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Product not found in cart&quot;));</span>
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (quantity == 0) {</span>
+<span class="fc" id="L95">            items.remove(item);</span>
+        } else {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            if (!item.getProduct().hasStock(quantity)) {</span>
+<span class="fc" id="L98">                throw new IllegalStateException(&quot;Insufficient stock&quot;);</span>
+            }
+<span class="fc" id="L100">            item.setQuantity(quantity);</span>
+        }
+<span class="fc" id="L102">    }</span>
+
+    public void clear() {
+<span class="fc" id="L105">        items.clear();</span>
+<span class="fc" id="L106">        discountRate = 0.0;</span>
+<span class="fc" id="L107">    }</span>
+
+    public boolean isEmpty() {
+<span class="fc" id="L110">        return items.isEmpty();</span>
+    }
+
+    public Optional&lt;CartItem&gt; getItem(String productId) {
+<span class="fc" id="L114">        return items.stream()</span>
+<span class="fc" id="L115">                .filter(item -&gt; item.getProduct().getId().equals(productId))</span>
+<span class="fc" id="L116">                .findFirst();</span>
+    }
+
+    public double getSubtotal() {
+<span class="fc" id="L120">        return items.stream()</span>
+<span class="fc" id="L121">                .mapToDouble(CartItem::getTotalPrice)</span>
+<span class="fc" id="L122">                .sum();</span>
+    }
+
+    public double calculateTax(double taxRate) {
+<span class="fc" id="L126">        return getSubtotal() * taxRate;</span>
+    }
+
+    public double getTotalWithTax(double taxRate) {
+<span class="fc" id="L130">        return getSubtotal() + calculateTax(taxRate);</span>
+    }
+
+    public boolean canCheckout() {
+<span class="fc bfc" id="L134" title="All 2 branches covered.">        return !items.isEmpty();</span>
+    }
+
+    public boolean validateStock() {
+<span class="fc" id="L138">        return items.stream()</span>
+<span class="fc" id="L139">                .allMatch(item -&gt; item.getProduct().hasStock(item.getQuantity()));</span>
+    }
+
+    public void applyDiscount(double discountRate) {
+<span class="fc bfc" id="L143" title="All 4 branches covered.">        if (discountRate &lt; 0 || discountRate &gt; 1) {</span>
+<span class="fc" id="L144">            throw new IllegalArgumentException(&quot;Discount rate must be between 0 and 1&quot;);</span>
+        }
+<span class="fc" id="L146">        this.discountRate = discountRate;</span>
+<span class="fc" id="L147">    }</span>
+
+    public CartSummary getSummary() {
+<span class="fc" id="L150">        int uniqueItems = items.size();</span>
+<span class="fc" id="L151">        int totalItems = getItemCount();</span>
+<span class="fc" id="L152">        double subtotal = getSubtotal();</span>
+<span class="fc" id="L153">        return new CartSummary(uniqueItems, totalItems, subtotal);</span>
+    }
+
+    public boolean containsProduct(String productId) {
+<span class="fc" id="L157">        return items.stream()</span>
+<span class="fc" id="L158">                .anyMatch(item -&gt; item.getProduct().getId().equals(productId));</span>
+    }
+
+    public int getProductQuantity(String productId) {
+<span class="fc" id="L162">        return items.stream()</span>
+<span class="fc" id="L163">                .filter(item -&gt; item.getProduct().getId().equals(productId))</span>
+<span class="fc" id="L164">                .mapToInt(CartItem::getQuantity)</span>
+<span class="fc" id="L165">                .sum();</span>
+    }
+
+    public String toJson() {
+<span class="fc" id="L169">        StringBuilder json = new StringBuilder();</span>
+<span class="fc" id="L170">        json.append(&quot;{&quot;);</span>
+<span class="fc" id="L171">        json.append(&quot;\&quot;id\&quot;:\&quot;&quot;).append(id).append(&quot;\&quot;,&quot;);</span>
+<span class="fc" id="L172">        json.append(&quot;\&quot;items\&quot;:[&quot;);</span>
+        
+<span class="fc" id="L174">        String itemsJson = items.stream()</span>
+<span class="fc" id="L175">                .map(item -&gt; String.format(&quot;{\&quot;product\&quot;:%s,\&quot;quantity\&quot;:%d}&quot;, </span>
+<span class="fc" id="L176">                                         item.getProduct().toJson(), item.getQuantity()))</span>
+<span class="fc" id="L177">                .collect(Collectors.joining(&quot;,&quot;));</span>
+        
+<span class="fc" id="L179">        json.append(itemsJson);</span>
+<span class="fc" id="L180">        json.append(&quot;],&quot;);</span>
+<span class="fc" id="L181">        json.append(&quot;\&quot;total\&quot;:&quot;).append(getTotal()).append(&quot;,&quot;);</span>
+<span class="fc" id="L182">        json.append(&quot;\&quot;itemCount\&quot;:&quot;).append(getItemCount());</span>
+<span class="fc" id="L183">        json.append(&quot;}&quot;);</span>
+        
+<span class="fc" id="L185">        return json.toString();</span>
+    }
+
+    public static ShoppingCart fromJson(String json) {
+        // Simple JSON parsing for demonstration
+        // In a real application, you would use a proper JSON library
+<span class="fc" id="L191">        ShoppingCart cart = new ShoppingCart();</span>
+        
+        // Extract cart ID
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">        if (json.contains(&quot;\&quot;id\&quot;:&quot;)) {</span>
+<span class="fc" id="L195">            int start = json.indexOf(&quot;\&quot;id\&quot;:\&quot;&quot;) + 6;</span>
+<span class="fc" id="L196">            int end = json.indexOf(&quot;\&quot;&quot;, start);</span>
+<span class="fc" id="L197">            cart.id = json.substring(start, end);</span>
+        }
+        
+        // Extract items (simplified parsing)
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">        if (json.contains(&quot;\&quot;items\&quot;:&quot;)) {</span>
+            // This is a simplified implementation
+            // In practice, you would use a proper JSON parser
+<span class="fc" id="L204">            String itemsSection = json.substring(json.indexOf(&quot;\&quot;items\&quot;:[&quot;) + 9);</span>
+<span class="fc" id="L205">            itemsSection = itemsSection.substring(0, itemsSection.indexOf(&quot;]&quot;));</span>
+            
+            // Parse items (simplified)
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">            if (!itemsSection.trim().isEmpty()) {</span>
+<span class="fc" id="L209">                String[] itemStrings = itemsSection.split(&quot;\\},\\{&quot;);</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">                for (String itemString : itemStrings) {</span>
+                    // Simplified item parsing
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">                    if (itemString.contains(&quot;\&quot;product\&quot;:&quot;)) {</span>
+                        // Extract product JSON and quantity
+<span class="fc" id="L214">                        int productStart = itemString.indexOf(&quot;\&quot;product\&quot;:{&quot;) + 11;</span>
+<span class="fc" id="L215">                        int productEnd = itemString.indexOf(&quot;}&quot;, productStart) + 1;</span>
+<span class="fc" id="L216">                        String productJson = itemString.substring(productStart, productEnd);</span>
+                        
+<span class="fc" id="L218">                        int quantityStart = itemString.indexOf(&quot;\&quot;quantity\&quot;:&quot;) + 12;</span>
+<span class="fc" id="L219">                        int quantityEnd = itemString.indexOf(&quot;,&quot;, quantityStart);</span>
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">                        if (quantityEnd == -1) quantityEnd = itemString.indexOf(&quot;}&quot;);</span>
+<span class="nc" id="L221">                        int quantity = Integer.parseInt(itemString.substring(quantityStart, quantityEnd));</span>
+                        
+<span class="nc" id="L223">                        Product product = Product.fromJson(productJson);</span>
+<span class="nc" id="L224">                        cart.addItem(product, quantity);</span>
+                    }
+                }
+            }
+        }
+        
+<span class="nc" id="L230">        return cart;</span>
+    }
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

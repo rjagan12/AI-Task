@@ -1,0 +1,8 @@
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/Event.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/Observer.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/EventNotificationDemo.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/EventManager.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/EmailNotificationListener.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/Subject.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/SMSNotificationListener.java
+/home/jaganathan/AI/Week-2/Task-2/ObserverPattern/src/main/java/com/observer/pattern/LogEventListener.java

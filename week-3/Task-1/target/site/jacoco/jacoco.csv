@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Shopping Cart TDD,com.shopping,CartItem,12,96,4,10,2,25,4,13,0,10
+Shopping Cart TDD,com.shopping,CartSummary,8,21,0,0,1,8,1,4,1,4
+Shopping Cart TDD,com.shopping,Product,8,334,11,36,1,75,11,38,0,24
+Shopping Cart TDD,com.shopping,ShoppingCart,17,532,6,34,4,115,6,46,0,32
+Shopping Cart TDD,com.shopping,ShoppingCartApplication,327,0,0,0,66,0,2,0,2,0

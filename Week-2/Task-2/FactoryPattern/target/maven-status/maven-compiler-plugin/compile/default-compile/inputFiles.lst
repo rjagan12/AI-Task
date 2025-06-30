@@ -1,0 +1,7 @@
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/db/MySQLConnection.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/db/DBConnection.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/db/PostgreSQLConnection.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/client/DatabaseClient.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/db/OracleConnection.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/db/DBConnectionFactory.java
+/home/jaganathan/AI/Week-2/Task-2/FactoryPattern/src/main/java/com/factorypattern/test/SimpleTestRunner.java

@@ -1,0 +1,4 @@
+/home/jaganathan/AI/Week-2/Task-2/StrategyPattern/src/test/java/com/payment/strategy/CreditCardPaymentTest.java
+/home/jaganathan/AI/Week-2/Task-2/StrategyPattern/src/test/java/com/payment/client/PaymentProcessorTest.java
+/home/jaganathan/AI/Week-2/Task-2/StrategyPattern/src/test/java/com/payment/strategy/PayPalPaymentTest.java
+/home/jaganathan/AI/Week-2/Task-2/StrategyPattern/src/test/java/com/payment/strategy/BankTransferPaymentTest.java

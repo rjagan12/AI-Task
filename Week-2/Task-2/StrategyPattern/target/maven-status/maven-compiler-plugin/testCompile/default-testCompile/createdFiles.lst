@@ -1,0 +1,4 @@
+com/payment/strategy/CreditCardPaymentTest.class
+com/payment/client/PaymentProcessorTest.class
+com/payment/strategy/PayPalPaymentTest.class
+com/payment/strategy/BankTransferPaymentTest.class

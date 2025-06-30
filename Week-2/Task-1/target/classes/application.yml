@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: user-management-service
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_management_db
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        
+  hikari:
+    maximum-pool-size: 20
+    minimum-idle: 5
+    connection-timeout: 30000
+    idle-timeout: 600000
+    max-lifetime: 1800000
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.usermanagement: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/user-management-service.log
+
+jwt:
+  secret: your-secret-key-here-make-it-very-long-and-secure-in-production
+  expiration: 86400000 # 24 hours in milliseconds
+  refresh-expiration: 604800000 # 7 days in milliseconds
+
+app:
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+    allowed-headers: "*" 

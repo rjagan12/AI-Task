@@ -1,0 +1,16 @@
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserValidationException.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/RegistrationResult.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserService.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserRegistrationRequest.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/User.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/JdbcUserRepository.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserRepository.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserNotFoundException.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/PasswordService.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserRole.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/PasswordChangeRequest.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserRepositoryException.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/LegacyUserManager.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/NotificationService.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/UserProfileUpdateRequest.java
+/home/jaganathan/AI/Week-2/Task-3/src/main/java/com/example/usermanagement/AuditService.java

@@ -1,0 +1,8 @@
+com/factorypattern/db/PostgreSQLConnection.class
+com/factorypattern/db/DBConnectionFactory.class
+com/factorypattern/db/OracleConnection.class
+com/factorypattern/db/MySQLConnection.class
+com/factorypattern/db/DBConnection.class
+com/factorypattern/db/DBConnectionFactory$DatabaseType.class
+com/factorypattern/test/SimpleTestRunner.class
+com/factorypattern/client/DatabaseClient.class
