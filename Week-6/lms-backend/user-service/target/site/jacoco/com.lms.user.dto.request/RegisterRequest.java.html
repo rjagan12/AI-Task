@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">User Service</a> &gt; <a href="index.source.html" class="el_package">com.lms.user.dto.request</a> &gt; <span class="el_source">RegisterRequest.java</span></div><h1>RegisterRequest.java</h1><pre class="source lang-java linenums">package com.lms.user.dto.request;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public class RegisterRequest {
+    
+    @NotBlank(message = &quot;Email is required&quot;)
+    @Email(message = &quot;Invalid email format&quot;)
+    private String email;
+    
+    @NotBlank(message = &quot;Password is required&quot;)
+    @Size(min = 8, message = &quot;Password must be at least 8 characters long&quot;)
+    private String password;
+    
+    @NotBlank(message = &quot;Full name is required&quot;)
+    @Size(min = 2, max = 100, message = &quot;Full name must be between 2 and 100 characters&quot;)
+    private String fullName;
+    
+    @NotBlank(message = &quot;Role is required&quot;)
+    private String role;
+
+    // Constructors
+<span class="fc" id="L25">    public RegisterRequest() {}</span>
+
+<span class="nc" id="L27">    public RegisterRequest(String email, String password, String fullName, String role) {</span>
+<span class="nc" id="L28">        this.email = email;</span>
+<span class="nc" id="L29">        this.password = password;</span>
+<span class="nc" id="L30">        this.fullName = fullName;</span>
+<span class="nc" id="L31">        this.role = role;</span>
+<span class="nc" id="L32">    }</span>
+
+    // Getters and Setters
+    public String getEmail() {
+<span class="fc" id="L36">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc" id="L40">        this.email = email;</span>
+<span class="fc" id="L41">    }</span>
+
+    public String getPassword() {
+<span class="fc" id="L44">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L48">        this.password = password;</span>
+<span class="fc" id="L49">    }</span>
+
+    public String getFullName() {
+<span class="fc" id="L52">        return fullName;</span>
+    }
+
+    public void setFullName(String fullName) {
+<span class="fc" id="L56">        this.fullName = fullName;</span>
+<span class="fc" id="L57">    }</span>
+
+    public String getRole() {
+<span class="fc" id="L60">        return role;</span>
+    }
+
+    public void setRole(String role) {
+<span class="fc" id="L64">        this.role = role;</span>
+<span class="fc" id="L65">    }</span>
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,0 +1,56 @@
+-------------------------------------------------------------------------------
+Test set: com.lms.user.controller.AuthControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 1.695 s <<< FAILURE! -- in com.lms.user.controller.AuthControllerTest
+com.lms.user.controller.AuthControllerTest.login_ValidCredentials_ReturnsAuthResponse -- Time elapsed: 0.525 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200 OK> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:222)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isOk(StatusAssertions.java:68)
+	at com.lms.user.controller.AuthControllerTest.login_ValidCredentials_ReturnsAuthResponse(AuthControllerTest.java:111)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.lms.user.controller.AuthControllerTest.register_ValidRequest_ReturnsAuthResponse -- Time elapsed: 0.029 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<201 CREATED> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:222)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isCreated(StatusAssertions.java:75)
+	at com.lms.user.controller.AuthControllerTest.register_ValidRequest_ReturnsAuthResponse(AuthControllerTest.java:77)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.lms.user.controller.AuthControllerTest.register_InvalidRequest_ReturnsBadRequest -- Time elapsed: 0.018 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400 BAD_REQUEST> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:222)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isBadRequest(StatusAssertions.java:131)
+	at com.lms.user.controller.AuthControllerTest.register_InvalidRequest_ReturnsBadRequest(AuthControllerTest.java:130)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.lms.user.controller.AuthControllerTest.login_InvalidCredentials_ReturnsUnauthorized -- Time elapsed: 0.019 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<401 UNAUTHORIZED> but was:<403 FORBIDDEN>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.reactive.server.StatusAssertions.lambda$assertStatusAndReturn$4(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.ExchangeResult.assertWithDiagnostics(ExchangeResult.java:222)
+	at org.springframework.test.web.reactive.server.StatusAssertions.assertStatusAndReturn(StatusAssertions.java:236)
+	at org.springframework.test.web.reactive.server.StatusAssertions.isUnauthorized(StatusAssertions.java:138)
+	at com.lms.user.controller.AuthControllerTest.login_InvalidCredentials_ReturnsUnauthorized(AuthControllerTest.java:149)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

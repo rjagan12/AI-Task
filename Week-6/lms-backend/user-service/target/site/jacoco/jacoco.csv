@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+User Service,com.lms.user.controller,UserController,81,6,0,0,15,3,14,1,14,1
+User Service,com.lms.user.controller,AuthController,43,6,0,0,8,3,8,1,8,1
+User Service,com.lms.user.dto.response,AuthResponse,6,70,0,0,2,29,2,14,2,14
+User Service,com.lms.user,UserServiceApplication,5,3,0,0,2,1,1,1,1,1
+User Service,com.lms.user.entity,User,21,69,0,0,9,28,6,14,6,14
+User Service,com.lms.user.dto.request,LoginRequest,9,17,0,0,4,7,1,5,1,5
+User Service,com.lms.user.dto.request,RegisterRequest,15,31,0,0,6,13,1,9,1,9
+User Service,com.lms.user.config,SecurityConfig,40,3,0,0,10,1,3,1,3,1
+User Service,com.lms.user.service,UserService,0,279,0,4,0,58,0,17,0,15
