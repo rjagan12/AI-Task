@@ -1,0 +1,6 @@
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/service/UserServiceTest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/controller/UserControllerTest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/controller/AuthControllerTest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/repository/UserRepositoryTest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/config/SecurityConfigTest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/test/java/com/lms/user/UserServiceApplicationTests.java

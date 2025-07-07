@@ -1,0 +1,241 @@
+version: '3.8'
+
+services:
+  # Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: lms-postgres
+    environment:
+      POSTGRES_DB: lms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - lms-network
+
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: lms-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - lms-network
+
+  # RabbitMQ for message broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: lms-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - lms-network
+
+  # Eureka Service Discovery
+  eureka:
+    image: openjdk:17-jdk-slim
+    container_name: lms-eureka
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    volumes:
+      - ./lms-backend/eureka-service/target:/app
+    command: java -jar /app/eureka-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+
+  # API Gateway
+  api-gateway:
+    image: openjdk:17-jdk-slim
+    container_name: lms-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+    volumes:
+      - ./lms-backend/api-gateway/target:/app
+    command: java -jar /app/api-gateway-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+
+  # User Service
+  user-service:
+    image: openjdk:17-jdk-slim
+    container_name: lms-user-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_DATA_R2DBC_URL: r2dbc:postgresql://postgres:5432/lms_users
+    volumes:
+      - ./lms-backend/user-service/target:/app
+    command: java -jar /app/user-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+      - postgres
+
+  # Course Service
+  course-service:
+    image: openjdk:17-jdk-slim
+    container_name: lms-course-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_DATA_R2DBC_URL: r2dbc:postgresql://postgres:5432/lms_courses
+    volumes:
+      - ./lms-backend/course-service/target:/app
+    command: java -jar /app/course-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+      - postgres
+
+  # Enrollment Service
+  enrollment-service:
+    image: openjdk:17-jdk-slim
+    container_name: lms-enrollment-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_DATA_R2DBC_URL: r2dbc:postgresql://postgres:5432/lms_enrollments
+    volumes:
+      - ./lms-backend/enrollment-service/target:/app
+    command: java -jar /app/enrollment-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+      - postgres
+
+  # Assessment Service
+  assessment-service:
+    image: openjdk:17-jdk-slim
+    container_name: lms-assessment-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_DATA_R2DBC_URL: r2dbc:postgresql://postgres:5432/lms_assessments
+    volumes:
+      - ./lms-backend/assessment-service/target:/app
+    command: java -jar /app/assessment-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+      - postgres
+
+  # Notification Service
+  notification-service:
+    image: openjdk:17-jdk-slim
+    container_name: lms-notification-service
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_DATA_R2DBC_URL: r2dbc:postgresql://postgres:5432/lms_notifications
+    volumes:
+      - ./lms-backend/notification-service/target:/app
+    command: java -jar /app/notification-service-1.0.0.jar
+    networks:
+      - lms-network
+    depends_on:
+      - eureka
+      - postgres
+      - redis
+
+  # Frontend Dashboard
+  dashboard-platform:
+    image: node:18-alpine
+    container_name: lms-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+      NEXT_PUBLIC_WS_URL: ws://localhost:8080
+    volumes:
+      - ./dashboard-platform:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - lms-network
+    depends_on:
+      - api-gateway
+
+  # Monitoring - Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: lms-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - lms-network
+
+  # Monitoring - Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: lms-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - lms-network
+    depends_on:
+      - prometheus
+
+volumes:
+  postgres_data:
+  redis_data:
+  rabbitmq_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  lms-network:
+    driver: bridge 

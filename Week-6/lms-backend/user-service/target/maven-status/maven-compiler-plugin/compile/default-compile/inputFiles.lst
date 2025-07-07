@@ -1,0 +1,10 @@
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/controller/UserController.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/entity/User.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/controller/AuthController.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/dto/request/RegisterRequest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/dto/response/AuthResponse.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/service/UserService.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/repository/UserRepository.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/dto/request/LoginRequest.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/UserServiceApplication.java
+/home/jaganathan/AI/Week-6/lms-backend/user-service/src/main/java/com/lms/user/config/SecurityConfig.java

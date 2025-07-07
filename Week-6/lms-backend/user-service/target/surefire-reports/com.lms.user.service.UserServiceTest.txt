@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.lms.user.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.929 s -- in com.lms.user.service.UserServiceTest

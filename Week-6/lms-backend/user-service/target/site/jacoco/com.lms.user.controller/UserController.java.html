@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">User Service</a> &gt; <a href="index.source.html" class="el_package">com.lms.user.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package com.lms.user.controller;
+
+import com.lms.user.entity.User;
+import com.lms.user.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping(&quot;/api/v1/users&quot;)
+@CrossOrigin(origins = &quot;*&quot;)
+public class UserController {
+
+    private final UserService userService;
+
+<span class="fc" id="L18">    public UserController(UserService userService) {</span>
+<span class="fc" id="L19">        this.userService = userService;</span>
+<span class="fc" id="L20">    }</span>
+
+    @GetMapping(&quot;/{userId}&quot;)
+    public Mono&lt;ResponseEntity&lt;User&gt;&gt; getUserById(@PathVariable UUID userId) {
+<span class="nc" id="L24">        return userService.getUserById(userId)</span>
+<span class="nc" id="L25">                .map(user -&gt; ResponseEntity.ok(user))</span>
+<span class="nc" id="L26">                .onErrorResume(error -&gt; Mono.just(ResponseEntity.notFound().build()));</span>
+    }
+
+    @GetMapping(&quot;/email/{email}&quot;)
+    public Mono&lt;ResponseEntity&lt;User&gt;&gt; getUserByEmail(@PathVariable String email) {
+<span class="nc" id="L31">        return userService.getUserByEmail(email)</span>
+<span class="nc" id="L32">                .map(user -&gt; ResponseEntity.ok(user))</span>
+<span class="nc" id="L33">                .onErrorResume(error -&gt; Mono.just(ResponseEntity.notFound().build()));</span>
+    }
+
+    @PutMapping(&quot;/{userId}&quot;)
+    public Mono&lt;ResponseEntity&lt;User&gt;&gt; updateUser(@PathVariable UUID userId, @RequestBody User updatedUser) {
+<span class="nc" id="L38">        return userService.updateUser(userId, updatedUser)</span>
+<span class="nc" id="L39">                .map(user -&gt; ResponseEntity.ok(user))</span>
+<span class="nc" id="L40">                .onErrorResume(error -&gt; Mono.just(ResponseEntity.notFound().build()));</span>
+    }
+
+    @DeleteMapping(&quot;/{userId}&quot;)
+    public Mono&lt;ResponseEntity&lt;Void&gt;&gt; deleteUser(@PathVariable UUID userId) {
+<span class="nc" id="L45">        return userService.deleteUser(userId)</span>
+<span class="nc" id="L46">                .then(Mono.just(ResponseEntity.noContent().&lt;Void&gt;build()))</span>
+<span class="nc" id="L47">                .onErrorResume(error -&gt; Mono.just(ResponseEntity.notFound().build()));</span>
+    }
+
+    @GetMapping(&quot;/profile&quot;)
+    public Mono&lt;ResponseEntity&lt;User&gt;&gt; getCurrentUserProfile(@RequestHeader(&quot;X-User-ID&quot;) String userId) {
+<span class="nc" id="L52">        return userService.getUserById(UUID.fromString(userId))</span>
+<span class="nc" id="L53">                .map(user -&gt; ResponseEntity.ok(user))</span>
+<span class="nc" id="L54">                .onErrorResume(error -&gt; Mono.just(ResponseEntity.notFound().build()));</span>
+    }
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
